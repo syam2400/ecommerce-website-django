@@ -1,0 +1,189 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h6 class="coupon__link"><span class="icon_tag_alt"></span> <a href="#">Have a coupon?</a> Click
+                    here to enter your code.</h6>
+            </div>
+        </div>
+        <div  class="checkout__form">
+            <div class="row">
+                <div class="col-lg-8">
+                    <H2>Login: {{user.email}} </H2>
+                    <form method="POST" action="{% url 'cart:checkout' %}" >
+                        <!-- <form method="POST"> -->
+                        {% csrf_token %}
+                        <h4>Enter the Address you want to deliver</h4>
+                        <div class="mb-3">
+                            <label class="form-label">ADDRESS</label>
+                            <input type="text" class="form-control" name="address" value="{{address}}">
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label"> PHONE NUMBER</label>
+                            <input type="number" class="form-control" name="phone" value="{{phone}}">
+                        </div>
+
+                        <button type="submit" class="btn btn-primary">Continue to pay</button>
+                        <!-- <a type="submit" href="{% url 'cart:checkout' %}" class="btn btn-primary">Continue to pay</a> -->
+                    </form>
+                    <br>
+                    <strong>{{error_message}}</strong>
+
+                </div>
+                <div class="col-lg-4">
+                    <div class="checkout__order">
+                        <h5>Your order</h5>
+                        <div class="checkout__order__product">
+                            <table style="width:350px">
+                                <thead>
+                                    <tr>
+                                        <th>Product</th>
+                                        <th>Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for i in cart %}
+                                    <tr>
+                                        <td class="cart__product__item__title">
+                                            <h6>{{i.cart_products.name}} x {{i.quantity}}</h6>
+                                        </td>
+                                        <td class="cart__price">{{i.subtotal}}</td>
+                                    </tr>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+
+                            <div class="checkout__order__total">
+                                <ul>
+                                    <li>Total <span>{{total}}</span></li>
+                                </ul>
+                            </div>
+                            <div class="checkout__order__widget">
+
+                                <p>Create am acount by entering the information below. If you are a returing
+                                    customer
+                                    login at the top of the page.</p>
+
+                            </div>
+                            <!-- <button style="
+                               margin-left: 41px;
+                               display: flex;
+                               align-items: center;
+                               justify-content: center;
+                               width: 230px;
+                               height: 50px;
+                               background-color: rgb(183, 46, 46);                                                    
+                               border-radius: 30px;
+                               ">
+                                       <a style="color: white;font-weight: bold;" href="{% url 'cart:initiate_payment' %}" >Place order</a>
+                               </button> -->
+                        </div>
+                    </div>
+                </div>
+        </form>
+    </div>
+</section>
+<!-- Checkout Section End -->
+
+<!-- Instagram Begin -->
+<div class="instagram">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-1.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-2.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-3.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-4.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-5.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-6.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Instagram End -->
+
+{% endblock %}
+
+
+<!--<div class="container" >-->
+<!--    < method="POST">-->
+<!--        {% csrf_token %}-->
+<!--        <div class="mb-3">-->
+<!--            <label class="form-label">Address</label>-->
+<!--            <input type="text" class="form-control" name="a" placeholder="enter address">-->
+
+<!--            <div class="mb-3">-->
+<!--                <label class="form-label">Phone</label>-->
+<!--                <input type="text" class="form-control" name="p" placeholder="enter phone">-->
+<!--            </div>-->
+<!--            <div class="mb-3">-->
+<!--                <label class="form-label">Accountno</label>-->
+<!--                <input type="text" class="form-control" name="n" placeholder="enter account no">-->
+<!--            </div>-->
+<!--           <input type="submit" class="btn btn-primary form-control">-->
+<!--        </div>-->
+<!--    </form>-->
+
+<!--</div>-->

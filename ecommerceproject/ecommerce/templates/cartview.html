@@ -1,0 +1,242 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} {% endblock %}
+{% block content %}
+
+
+<!-- Breadcrumb Begin -->
+<div class="breadcrumb-option">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="breadcrumb__links">
+                    <a href="./index.html"><i class="fa fa-home"></i> Home</a>
+                    <span>Shopping cart</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+
+<!-- Shop Cart Section Begin -->
+
+
+<section class="shop-cart spad">
+    <div class="container">
+        {% if not cart %}
+        <div>
+            <h1 class="text-center">Cart is empty</h1>
+            <a href="{% url 'shop:home' %}">Continue shopping</a>
+        </div>
+
+        {% else %}
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="shop__cart__table">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                            <th></th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for i in cart %}
+                        <tr>
+                            <td class="cart__product__item">
+                                <img src="{{i.cart_products.image.url}}" style="height:250px;width:200px;" alt="">
+                                <div class="cart__product__item__title">
+                                    <h6>{{i.cart_products.name}}</h6>
+                                    <div class="rating">
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                        <i class="fa fa-star"></i>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="cart__price">{{i.cart_products.price}}</td>
+                            <td>
+                                <a href="{% url 'cart:cart_remove' i.cart_products.id %}"><i class="fa-solid fa-circle-minus"
+                                                                      style="color:black"></i></a>
+                                <span>   {{i.quantity}} </span>
+
+                                <a href="{% url 'cart:add_to_cart' i.cart_products.id %}"><i class="fa-solid fa-circle-plus"
+                                                                       style="color:black"></i></a>
+
+                            </td>
+                            <td class="cart__total">{{i.subtotal}}</td>
+                            <td class="cart__close"><a href="{% url 'cart:full_remove' i.cart_products.id %}" class="icon_close"></a></td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn">
+                    <a href="{% url 'shop:allproducts' %}">Continue Shopping</a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6">
+                <div class="cart__btn update__btn">
+                    <a href="{% url 'shop:all_products_page2' %}"><span class="icon_loading"></span> Update cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="discount__content">
+                    <h6>Discount codes</h6>
+                    <form action="#">
+                        <input type="text" placeholder="Enter your coupon code">
+                        <button type="submit" class="site-btn">Apply</button>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-4 offset-lg-2 container p-4 mb-4" style="height:150px">
+                <div class="cart__total__procced row">
+                    <div class="col-md-12"><h6>Cart total</h6></div>
+                    <div class="col-md-6">Subtotal</div>
+                    <div class="col-md-6">
+                        {% for i in cart %}
+                            <div>{{i.subtotal}}</div>
+                        {% endfor %}
+                        </div>
+                        <div class="col-md-6 mt-2">Total</div>
+                    <div class="col-md-6 mt-2">{{total}}</div>
+                    <div class="mt-4">
+                        <a href="{% url 'cart:checkout' %}" class="primary-btn" style="width:250px">Proceed to checkout</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+<!-- Shop Cart Section End -->
+
+<!-- Instagram Begin -->
+<div class="instagram mt-4">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-1.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-2.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-3.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-4.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-5.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 p-0">
+                <div class="instagram__item set-bg" data-setbg="{% static 'img/instagram/insta-6.jpg' %}">
+                    <div class="instagram__text">
+                        <i class="fa fa-instagram"></i>
+                        <a href="#">@ ashion_shop</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Instagram End -->
+
+{% endblock %}
+
+<!--{% if not cart %}-->
+<!--<div>-->
+<!--    <h1 class="text-center">Cart is empty</h1>-->
+<!--    <a href="{% url 'shop:allprodcat' %}">Continue shopping</a>-->
+<!--</div>-->
+
+<!--{% else %}-->
+<!--<div class="row" style="margin-bottom:100px">-->
+<!--    <h2 CLASS="text-center">SHOPPING CART</h2>-->
+<!--    <div class="col-sm-8">-->
+<!--        <table class="table table-bordered">-->
+<!--            <tr>-->
+<!--                <th colspan="5" CLASS="text-center">CART ITEM</th>-->
+<!--            </tr>-->
+<!--            {% for i in cart %}-->
+<!--            <tr>-->
+<!--                <td><img src="{{i.product.image.url}}" height="100px" width="100px"></td>-->
+<!--                <td><P><strong>{{i.product.name}}</strong></P></td>-->
+<!--                <td><p><strong>Product Id:{{i.product.id}}</strong></p>-->
+<!--                    <p><strong>Unit price:{{i.product.price}}</strong></p>-->
+<!--                    <p><strong>Quantity:{{i.quantity}}*{{i.product.price}}</strong></p>-->
+<!--                    <p>Subtotal:{{i.subtotal}}</p>-->
+<!--                <td>-->
+<!--                    {% if i.quantity < i.product.stock %}-->
+<!--                    <a href="{% url 'cart:add_to_cart' i.product.id %}"><i class="fa-solid fa-circle-plus "-->
+<!--                                                                           style="color:black"></i></a>-->
+<!--                    <a href="{% url 'cart:cart_remove' i.product.id %}"><i class="fa-solid fa-circle-minus"-->
+<!--                                                                           style="color:black"></i></a>-->
+<!--                    <a href="{% url 'cart:full_remove' i.product.id %}"><i class="fa-solid fa-trash-can"-->
+<!--                                                                           style="color:black"></i></a>-->
+<!--                    {% else %}-->
+<!--                    <a href="{% url 'cart:add_to_cart' i.product.id %}"><i class="fa-solid fa-circle-minus "-->
+<!--                                                                           style="color:black"></i></a>-->
+<!--                    <a href="{% url 'cart:full_remove' i.product.id %}"><i class="fa-solid fa-trash-can "-->
+<!--                                                                           style="color:black"></i></a>-->
+<!--                    {% endif %}-->
+<!--                </td>-->
+<!--            </tr>-->
+<!--            {% endfor %}-->
+<!--        </table>-->
+<!--    </div>-->
+<!--    <div class="col-sm-3">-->
+<!--        <table class="table table-bordered">-->
+<!--            <tr>-->
+<!--                <th class="colspan=5">CHECK OUT</th>-->
+<!--            </tr>-->
+<!--            <tr class="text-center">-->
+<!--                <td>TOTAL AMOUNT: {{total}}</td>-->
+<!--            </tr>-->
+<!--        </table>-->
+
+<!--            <a href="{% url 'cart:orderform' %}" class="btn btn-primary">Place order</a>-->
+<!--            <a href="{% url 'shop:allprodcat' %}"  class="btn btn-success ms-5">Continue-->
+<!--                shopping</a>-->
+<!--    </div>-->
+<!--</div>-->
+<!--{% endif %}-->

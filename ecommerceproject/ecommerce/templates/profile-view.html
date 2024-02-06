@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="container-fluid  profile-container">
+    <div class=" child-container1">
+        <div class="profile-sec1">
+
+            <div class="div-profile-icon"><img style="height: 54px;flex: 1;" src="{% static 'images/user.png' %}"> </div>
+            <div style="display: flex;flex-direction: column;margin-left: 10px;">
+                <div style="padding-top: 10px;">
+                    <div style="margin-top: 20px;">HELLO ,</div>
+                </div>
+                <div class="profile-name"> {{user.username}}</div>
+            </div>
+      
+        </div>
+
+        <div class="profile-sec2"></div>
+
+    </div>
+
+    <div class="child-container2"></div>
+</div>
+
+
+{% endblock %}
